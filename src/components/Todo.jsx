@@ -17,7 +17,7 @@ class Todo extends React.Component {
 		TodoStore.addChangeListener(this.onChange);
 	}
 	componentWillUnmount(){
-		TodoStore.removeChangeListListener(this.onChange);
+		TodoStore.removeChangeListener(this.onChange);
 	}
 	createTodo(){
 		TodoAction.create({id:uuid.v4(),content: '3rd stuff'});
@@ -43,7 +43,7 @@ class Todo extends React.Component {
 class List extends React.Component {
 	render(){
 		//debugger;
-		var list = this.props.items.map(value=>(<li><button onClick={()=>this.props.onDelete(value.id)}>delete</button>{value.content}</li>));
+		var list = this.props.items.map(value=>(<li key={value.id}><button onClick={()=>this.props.onDelete(value.id)}>delete</button>{value.content}</li>));
 		return (
 			<ul>
 				{list}

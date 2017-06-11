@@ -2,23 +2,24 @@ import uuid from 'uuid';
 import AppDispatcher from '../dispatcher/AppDispatcher'
 import {EventEmitter} from 'events';
 
-const TodoStore = Object.assign({}, EventEmitter.prototype,{
-	todos: [{
+//warning: every function has 'this', so you must call these functions as a store's method!
+let todos = [{
 		id: uuid.v4(),
 		content: 'first one'
 	},
 	{
 		id: uuid.v4(),
 		content: 'second one'
-	}],
+	}];
+const TodoStore = Object.assign({}, EventEmitter.prototype,{
 	getAll(){
-		return this.todos;
+		return todos;
 	},
 	addTodo(todo){
-		this.todos.push(todo);
+		todos.push(todo);
 	},
 	deleteTodo(id){
-		this.todos=this.todos.filter(item=>item.id!==id)
+		todos=todos.filter(item=>item.id!==id)
 	},
 	emitChange(){
 		this.emit('change');
