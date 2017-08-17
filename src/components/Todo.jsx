@@ -10,8 +10,8 @@ class Todo extends React.Component {
     this.state = {
       todos: TodoStore.getAll(),
     };
-    this.createTodo = this.createTodo.bind(this);
-    this.deleteTodo = this.deleteTodo.bind(this);
+    // this.createTodo = this.createTodo.bind(this);
+    // this.deleteTodo = this.deleteTodo.bind(this);
     this.onChange = this.onChange.bind(this);
   }
   componentDidMount() {
@@ -35,22 +35,11 @@ class Todo extends React.Component {
     return (
       <div>
         <List items={this.state.todos} onDelete={TodoAction.delete} />
-        <button onClick={TodoAction.create({ id: uuid.v4(), content: '3rd stuff' })}>createTodo</button>
+        <button onClick={() => TodoAction.create({ id: uuid.v4(), content: '3rd stuff' })}>createTodo</button>
       </div>
     );
   }
 }
-
-// class List extends React.Component {
-//   render(){
-//     var list = this.props.items.map(value=>(<li key={value.id}><button onClick={()=>this.props.onDelete(value.id)}>delete</button>{value.content}</li>));
-//     return (
-//       <ul>
-//         {list}
-//       </ul>
-//       )
-//   }
-// }
 
 function List({ items, onDelete }) {
   const list = items.map(v => (
@@ -64,10 +53,14 @@ function List({ items, onDelete }) {
   );
 }
 List.propTypes = {
-  items: PropTypes.shape({
+  // items: PropTypes.shape({
+  //   id: PropTypes.string,
+  //   content: PropTypes.string,
+  // }),
+  items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     content: PropTypes.string,
-  }),
+  })),
   onDelete: PropTypes.func,
 };
 

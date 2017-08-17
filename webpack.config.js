@@ -16,7 +16,7 @@ module.exports = {
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
 
-    './index.js'
+    './index.jsx',
     // the entry point of our app
   ],
   output: {
@@ -25,10 +25,12 @@ module.exports = {
 
     path: resolve(__dirname, 'dist'),
 
-    publicPath: '/'
+    publicPath: '/',
     // necessary for HMR to know where to load the hot update chunks
   },
-
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   devtool: 'inline-source-map',
 
   devServer: {
@@ -38,7 +40,7 @@ module.exports = {
     contentBase: resolve(__dirname, 'dist'),
     // match the output path
 
-    publicPath: '/'
+    publicPath: '/',
     // match the output `publicPath`
   },
 
@@ -46,12 +48,12 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: [ 'babel-loader', ],
-        exclude: /node_modules/
+        use: ['babel-loader'],
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader?modules', ],
+        use: ['style-loader', 'css-loader?modules'],
       },
     ],
   },
