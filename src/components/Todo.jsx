@@ -1,55 +1,74 @@
-import TodoAction from '../../actions/TodoAction';
 import uuid from 'uuid';
 import React from 'react';
-import TodoStore from '../../stores/TodoStore.js';
+import PropTypes from 'prop-types';
+import TodoStore from '../../stores/TodoStore';
+import TodoAction from '../../actions/TodoAction';
 
 class Todo extends React.Component {
-	constructor(props){
-		super(props);
-		this.state={
-			todos: TodoStore.getAll()
-		};
-		this.createTodo = this.createTodo.bind(this);
-		this.deleteTodo = this.deleteTodo.bind(this);
-		this.onChange = this.onChange.bind(this);
-	}
-	componentDidMount(){
-		TodoStore.addChangeListener(this.onChange);
-	}
-	componentWillUnmount(){
-		TodoStore.removeChangeListener(this.onChange);
-	}
-	createTodo(){
-		TodoAction.create({id:uuid.v4(),content: '3rd stuff'});
-	}
-	onChange(){
-		this.setState({
-			todos: TodoStore.getAll()
-		})
-	}
-	deleteTodo(id){
-		TodoAction.delete(id);
-	}
-	render(){
-		return(
-			<div>
-				<List items={this.state.todos} onDelete={this.deleteTodo}></List>
-				<button onClick={this.createTodo}>createTodo</button>
-			</div>
-			)
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: TodoStore.getAll(),
+    };
+    this.createTodo = this.createTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+  componentDidMount() {
+    TodoStore.addChangeListener(this.onChange);
+  }
+  componentWillUnmount() {
+    TodoStore.removeChangeListener(this.onChange);
+  }
+  onChange() {
+    this.setState({
+      todos: TodoStore.getAll(),
+    });
+  }
+  // createTodo() {
+  //   TodoAction.create({id:uuid.v4(),content: '3rd stuff'});
+  // }
+  // deleteTodo(id) {
+  //   TodoAction.delete(id);
+  // }
+  render() {
+    return (
+      <div>
+        <List items={this.state.todos} onDelete={TodoAction.delete} />
+        <button onClick={TodoAction.create({ id: uuid.v4(), content: '3rd stuff' })}>createTodo</button>
+      </div>
+    );
+  }
 }
 
-class List extends React.Component {
-	render(){
-		//debugger;
-		var list = this.props.items.map(value=>(<li key={value.id}><button onClick={()=>this.props.onDelete(value.id)}>delete</button>{value.content}</li>));
-		return (
-			<ul>
-				{list}
-			</ul>
-			)
-	}
+// class List extends React.Component {
+//   render(){
+//     var list = this.props.items.map(value=>(<li key={value.id}><button onClick={()=>this.props.onDelete(value.id)}>delete</button>{value.content}</li>));
+//     return (
+//       <ul>
+//         {list}
+//       </ul>
+//       )
+//   }
+// }
+
+function List({ items, onDelete }) {
+  const list = items.map(v => (
+    <li key={v.id}>
+      <button onClick={() => onDelete(v.id)}>delete</button>{v.content}
+    </li>));
+  return (
+    <ul>
+      {list}
+    </ul>
+  );
 }
+List.propTypes = {
+  items: PropTypes.shape({
+    id: PropTypes.string,
+    content: PropTypes.string,
+  }),
+  onDelete: PropTypes.func,
+};
 
 export default Todo;
