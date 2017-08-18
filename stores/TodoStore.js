@@ -35,6 +35,10 @@ const TodoStore = Object.assign({}, EventEmitter.prototype, {
   getHide() {
     return hideDone;
   },
+  getDonePercent() {
+    const doneNum = todos.filter(v => v.checked).length;
+    return String(doneNum).concat('/', String(todos.length));
+  },
   emitChange() {
     this.emit('change');
   },
