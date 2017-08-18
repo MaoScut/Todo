@@ -105,5 +105,16 @@ AppDispatcher.register((action) => {
       throw Error('Uncaught action type!');
   }
 });
-
-export default TodoStore;
+TodoStore.addChangeListener = TodoStore.addChangeListener.bind(TodoStore);
+TodoStore.removeChangeListener = TodoStore.removeChangeListener.bind(TodoStore);
+// 只能导出获取数据的方法
+// export default TodoStore;
+export const {
+  getHide,
+  getAll,
+  getDonePercent,
+  getEditorState,
+  getSelectedItem,
+  addChangeListener,
+  removeChangeListener,
+} = TodoStore;

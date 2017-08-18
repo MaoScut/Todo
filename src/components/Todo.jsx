@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoStore from '../../stores/TodoStore';
+import * as TodoStore from '../../stores/TodoStore';
 import TodoAction from '../../actions/TodoAction';
 import Statics from './Statics';
 import List from './List';
