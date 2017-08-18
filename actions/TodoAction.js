@@ -24,6 +24,23 @@ const TodoAction = {
       actionType: 'HIDE_TODO',
     });
   },
+  toggleEditor(id) {
+    AppDispatcher.dispatch({
+      actionType: 'TOGGLE_EDITOR',
+      id,
+    });
+  },
+  save(content) {
+    AppDispatcher.dispatch({
+      actionType: 'SAVE_ITEM',
+      content,
+    });
+  },
+  cancelEdit() {
+    AppDispatcher.dispatch({
+      actionType: 'CANCEL_EDIT',
+    });
+  },
 };
 
 export default TodoAction;

@@ -41,9 +41,9 @@ function TodoItem({ content, id, checked, hideDone }) {
   const className = checked && hideDone ? 'hidden' : '';
   return (
     <li className={className}>
-      <input type="checkbox" value={id} checked={checked} />
+      <input type="checkbox" className="checkbox" value={id} checked={checked} />
       {content}
-      {/* <button className="delete-btn" onClick={() => deleteHandle(id)}>删除</button> */}
+      <button className="edit" value={id}>编辑</button>
       <button className="delete-btn" value={id}>删除</button>
     </li>
   );

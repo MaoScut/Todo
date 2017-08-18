@@ -14,6 +14,8 @@ let todos = [{
   checked: false,
 }];
 let hideDone = false;
+// let showEditor = false;
+let selectedItem = null;
 const TodoStore = Object.assign({}, EventEmitter.prototype, {
   getAll() {
     return todos;
@@ -38,6 +40,25 @@ const TodoStore = Object.assign({}, EventEmitter.prototype, {
   getDonePercent() {
     const doneNum = todos.filter(v => v.checked).length;
     return String(doneNum).concat('/', String(todos.length));
+  },
+  // toggleEditor() {
+  //   showEditor = !showEditor;
+  // },
+  // getEditorState() {
+  //   return showEditor;
+  // },
+  changeSelectedItem(id) {
+    selectedItem = todos.filter(v => v.id === id)[0];
+  },
+  getSelectedItem() {
+    return selectedItem;
+  },
+  save(content) {
+    selectedItem.content = content;
+    selectedItem = null;
+  },
+  cancelEdit() {
+    selectedItem = null;
   },
   emitChange() {
     this.emit('change');
@@ -65,6 +86,19 @@ AppDispatcher.register((action) => {
       break;
     case 'HIDE_TODO':
       TodoStore.toggle();
+      TodoStore.emitChange();
+      break;
+    case 'TOGGLE_EDITOR':
+      // TodoStore.toggleEditor();
+      TodoStore.changeSelectedItem(action.id);
+      TodoStore.emitChange();
+      break;
+    case 'SAVE_ITEM':
+      TodoStore.save(action.content);
+      TodoStore.emitChange();
+      break;
+    case 'CANCEL_EDIT':
+      TodoStore.cancelEdit();
       TodoStore.emitChange();
       break;
     default:
