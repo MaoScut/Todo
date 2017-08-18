@@ -2,21 +2,21 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  context: resolve(__dirname, 'src'),
+  // context: resolve(__dirname, 'src'),
 
   entry: [
     'react-hot-loader/patch',
     // activate HMR for React
 
-    'webpack-dev-server/client?http://localhost:8080',
+    // 'webpack-dev-server/client?http://localhost:8080',
     // bundle the client for webpack-dev-server
     // and connect to the provided endpoint
 
-    'webpack/hot/only-dev-server',
+    // 'webpack/hot/only-dev-server',
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
 
-    './index.jsx',
+    './src/index.jsx',
     // the entry point of our app
   ],
   output: {
@@ -25,7 +25,6 @@ module.exports = {
 
     path: resolve(__dirname, 'dist'),
 
-    publicPath: '/',
     // necessary for HMR to know where to load the hot update chunks
   },
   resolve: {
@@ -36,11 +35,12 @@ module.exports = {
   devServer: {
     hot: true,
     // enable HMR on the server
-
-    contentBase: resolve(__dirname, 'dist'),
+    inline: true,
+    historyApiFallback: true,
     // match the output path
-
-    publicPath: '/',
+    // 告诉webpack-dev-server从项目目录下的dist文件夹提供服务（文件）
+    contentBase: './dist',
+    // publicPath: '/',
     // match the output `publicPath`
   },
 
@@ -48,12 +48,19 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: ['babel-loader'],
-        exclude: /node_modules/,
+        // use: ['babel-loader'],
+        // exclude: /node_modules/,
+        loaders: ['react-hot-loader/webpack', 'babel-loader'],
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader?modules'],
+        test: /\.s?css$/,
+        use: [{
+          loader: 'style-loader',
+        }, {
+          loader: 'css-loader',
+        }, {
+          loader: 'sass-loader',
+        }],
       },
     ],
   },
