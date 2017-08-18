@@ -6,11 +6,14 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 let todos = [{
   id: uuid.v4(),
   content: 'first one',
+  checked: false,
 },
 {
   id: uuid.v4(),
   content: 'second one',
+  checked: false,
 }];
+let hideDone = false;
 const TodoStore = Object.assign({}, EventEmitter.prototype, {
   getAll() {
     return todos;
@@ -20,6 +23,17 @@ const TodoStore = Object.assign({}, EventEmitter.prototype, {
   },
   deleteTodo(id) {
     todos = todos.filter(item => item.id !== id);
+  },
+  checkItem(id) {
+    const item = todos.find(v => v.id === id);
+    item.checked = !item.checked;
+    // todos.find(v => v.id === id).
+  },
+  toggle() {
+    hideDone = !hideDone;
+  },
+  getHide() {
+    return hideDone;
   },
   emitChange() {
     this.emit('change');
@@ -41,7 +55,16 @@ AppDispatcher.register((action) => {
       TodoStore.deleteTodo(action.id);
       TodoStore.emitChange();
       break;
+    case 'CHECK_TODO':
+      TodoStore.checkItem(action.id);
+      TodoStore.emitChange();
+      break;
+    case 'HIDE_TODO':
+      TodoStore.toggle();
+      TodoStore.emitChange();
+      break;
     default:
+      throw Error('Uncaught action type!');
   }
 });
 

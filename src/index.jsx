@@ -15,11 +15,34 @@ const render = (Component) => {
   );
 };
 
+// render(App);
+
+// // Hot Module Replacement API
+// if (module.hot) {
+//   module.hot.accept('./components/Todo', () => {
+//     // const NextApp = require('./components/Todo').default;
+//     render(App);
+//   });
+// }
+
+// ReactDOM.render(
+//   <AppContainer>
+//     <App />
+//   </AppContainer>,
+//   document.getElementById('root'),
+// );
 render(App);
 
 // Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('./components/Todo.jsx', () => {
-    render(App);
+  module.hot.accept('./components/Todo', () => {
+    const NextApp = require('./components/Todo').default;
+    // ReactDOM.render(
+    //   <AppContainer>
+    //     <NextApp />
+    //   </AppContainer>,
+    //   document.getElementById('root'),
+    // );
+    render(NextApp);
   });
 }

@@ -13,6 +13,17 @@ const TodoAction = {
       id,
     });
   },
+  check(id) {
+    AppDispatcher.dispatch({
+      actionType: 'CHECK_TODO',
+      id,
+    });
+  },
+  hide() {
+    AppDispatcher.dispatch({
+      actionType: 'HIDE_TODO',
+    });
+  },
 };
 
 export default TodoAction;
