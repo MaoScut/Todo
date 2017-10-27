@@ -31,7 +31,7 @@
     "uuid": "^3.0.1"
   },
   "scripts": {
-    "start": "webpack-dev-server"
+    "dev": "webpack-dev-server"
   },
   "name": "todoflux",
   "version": "0.0.1"

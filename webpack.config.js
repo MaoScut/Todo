@@ -16,7 +16,8 @@ module.exports = {
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
 
-    './src/index.jsx',
+    // './src/index.jsx',
+    './src/todomvc.js',    
     // the entry point of our app
   ],
   output: {
