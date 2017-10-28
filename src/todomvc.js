@@ -3,11 +3,11 @@ import uuid from 'uuid';
 function View(ul) {
   function render(model) {
     ul.innerHTML = '';
-    model.forEach(m => {
+    model.forEach((m) => {
       const li = document.createElement('li');
       li.innerText = m.text;
       ul.appendChild(li);
-    })
+    });
   }
   return {
     render,
@@ -23,9 +23,8 @@ function Model() {
     list,
   };
 }
-const controller = (function() {
+const controller = (function c() {
   let addBtn = null;
-  let removeBtn = null;
   let ul = null;
   let container = null;
   let view = null;
@@ -39,18 +38,16 @@ const controller = (function() {
     container.appendChild(addBtn);
     view = View(ul);
     model = Model();
-    addBtn.onclick = function() {
+    addBtn.addEventListener('click', () => {
       model.add({
         id: uuid.v4(),
         text: 'hahaha',
       });
       view.render(model.list);
-    }
-    removeBtn = document.createElement('button');
-    removeBtn.innerText = 'remove';
+    });
   }
   return {
     init,
-  }
-})();
+  };
+}());
 controller.init();
