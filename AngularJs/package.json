@@ -1,0 +1,29 @@
+{
+  "name": "angularjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.7.2",
+    "babel-polyfill": "^6.26.0"
+  },
+  "devDependencies": {
+    "angular1-template-loader": "^0.1.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
+    "html-loader": "^0.5.5",
+    "ngtemplate-loader": "^2.0.1",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC"
+}
