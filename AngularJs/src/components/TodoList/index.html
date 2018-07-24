@@ -1,0 +1,8 @@
+<div>
+    <ul>
+        <todo-li ng-repeat="todo in list | filter: beShowed track by $index"></todo-li>
+    </ul>
+    <input type="text" ng-model="tempDetail">
+    <button ng-click="add()">增加</button>
+    <button ng-click="toggleHideDone()">{{hideDone ? '显示完成事项' : '隐藏完成事项'}}</button>
+</div>
