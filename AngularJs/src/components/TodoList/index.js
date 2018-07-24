@@ -1,10 +1,11 @@
 import templateUrl from './index.html';
-import Store from '../../store';
+import todoService from '../../store';
 import todoLi from '../TodoLi/index';
 
 export default function (ngModule) {
     //定义指令，对应页面中的<hello-world></hello-world>
-    ngModule.value('store', new Store('Todo'));
+    ngModule.value('todoService', new todoService('Todo'));
+    // ngModule.service('todoService', todoService);
     todoLi(ngModule);
     ngModule
         .directive('todoList', function () {
@@ -14,20 +15,21 @@ export default function (ngModule) {
                 templateUrl: templateUrl,
             }
         })
-        .controller('myList', function ($scope, store) {
-            $scope.list = store.list;
-            $scope.hideDone = store.hideDone;
+        .controller('myList', function ($scope, todoService) {
+            $scope.list = todoService.list;
+            $scope.hideDone = todoService.hideDone;
             $scope.tempDetail = '';
             $scope.add = function () {
-                store.add($scope.tempDetail);
+                todoService.add($scope.tempDetail);
+                $scope.tempDetail = '';
             }
             $scope.toggleCheck = function (id) {
-                store.toggleCheck(id);
+                todoService.toggleCheck(id);
             }
             $scope.toggleHideDone = function () {
-                // 仅仅是store改变，ui并不会随着变化，要手动改变scope上的值
+                // 仅仅是todoService改变，ui并不会随着变化，要手动改变scope上的值
                 $scope.hideDone = !$scope.hideDone;
-                store.toggleHideDone();
+                todoService.toggleHideDone();
             }
             $scope.beShowed = function (todoObj) {
                 if ($scope.hideDone) {
@@ -38,7 +40,7 @@ export default function (ngModule) {
                 return true;
             }
             $scope.delete = function (id) {
-                store.delete(id);
+                todoService.delete(id);
             }
         });
 
