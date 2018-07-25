@@ -3,21 +3,18 @@ import uuid from 'uuid';
 export default class Store {
     constructor(STORE_KEY) {
         this.key = STORE_KEY;
-        const dataObj = this.readData();
-        this.list = dataObj.list;
-        this.hideDone = dataObj.hideDone;
+        // const dataObj = this.readData();
+        this.list = this.readData();
+        // this.hideDone = dataObj.hideDone;
     }
     readData() {
         return JSON.parse(localStorage.getItem(this.key));
     }
     save() {
-        localStorage.setItem(this.key, JSON.stringify({
-            hideDone: this.hideDone,
-            list: this.list,
-        }));
+        localStorage.setItem(this.key, JSON.stringify(this.list));
     }
-    add(detail) {
-        this.list.push(TodoObj(detail));
+    add(detail, achieveTime) {
+        this.list.push(TodoObj(detail, achieveTime));
         this.save();
     }
     delete(id) {
@@ -25,22 +22,26 @@ export default class Store {
         this.list.splice(i,1);
         this.save();
     }
-    toggleCheck(id) {
+    // 完成了就是完成了，不会再变成不完成
+    check(id) {
         const i = this.list.findIndex(obj => obj.id == id);
-        this.list[i].done = !this.list[i].done;
+        this.list[i].done = true;
         this.save();
     }
-    toggleHideDone() {
-        this.hideDone = !this.hideDone;
+    toggleShowed(id) {
+        const i = this.list.findIndex(obj => obj.id == id);
+        this.list[i] = !this.list[i];
         this.save();
     }
 }
 
-function TodoObj(detail) {
+function TodoObj(detail, achieveTime) {
     return {
         id: uuid.v4(),
-        time: Date.now(),
+        createdTime: Date.now(),
         done: false,
         detail,
+        achieveTime,
+        showed: true,
     }
 }
