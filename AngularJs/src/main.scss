@@ -1,28 +1,50 @@
+body {
+    margin: 0;
+}
 div.container {
-    width: 1920px;
-    height: 900px;
-    background-color: #edf6ff;
-    border: 10px solid #2babe2;
-    border-radius: 10px;
-    box-sizing: border-box;
-    margin: 0 auto;
-    .list {        
-        width: 20%;
-        height: 50%;
-        position: absolute;
-        top: 20%;
-        left: 25%;
-        .todo-ul {
-            margin: 0;
-            border: 10px solid #dd3b2a;
-            border-radius: 10px;
+    header {
+        height: 100px;
+        background-color: #058dd1;
+        border-bottom: 2px solid #7c6708;
+    }
+    main {      
+        li {
+            list-style: none;
+            font-size: 22px;
+            margin: 30px 0;
+        }  
+        .todo-ul-left {
+            padding: 0;
+            text-align: center;
+            border-right: #058dd1 2px solid;
             box-sizing: border-box;
-            background-color: #ffffff;
-            height: 80%;
-            padding-left: 10px;    
-            li {
-                list-style: none;
-                font-size: 22px;
+            .achieveTime-input {
+                width: 100px;
+            }
+        }
+        .todo-ul-right {
+            .detail-input {
+                margin-left: 20px;
+            }
+            padding: 0;
+            margin-left: -10px;
+            .undone {
+                display: inline-block;
+                border-radius: 100%;
+                background-color: #dd3b2a;
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+            .done {
+                display: inline-block;
+                border-radius: 100%;
+                background-color: #2de0ad;
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+                margin-right: 10px;
             }
         }
         .toggle-hide-done-btn {
@@ -31,6 +53,17 @@ div.container {
             border-width: 0;
             height: 40px;
             font-size: 22px;
+        }
+    }
+    footer {
+        position: relative;
+        .add-btn {
+            position: absolute;
+            right: 10%;
+        }
+        .showEditor-btn {
+            position: absolute;
+            right: 10%;
         }
     }
     .add {
@@ -77,4 +110,81 @@ div.container {
    .my_protocol .input_agreement_protocol:checked+span {
                 background-position: 0 0px
             }
+}
+.pm-container {
+    padding-left: 130px;
+    /*height: 500px;*/
+    box-sizing: border-box;
+}
+.pm-container::after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.pm-left {
+    width: 130px;
+    float: left;
+    margin-left: -130px;
+}
+.pm-right {
+    width: 100%;
+    float: left;
+}
+
+.menu {
+    box-sizing: border-box;
+    position: relative;
+    width: 2em;
+    height: 2em;
+    background-color: #058dd1;
+    border-radius: .3em;
+}
+.menu:before {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 1.2em;
+    height: .15em;
+    background-color: #fff;
+}
+.menu:after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 1.2em;
+    height: .9em;
+    border-width: .15em;
+    border-style: solid none;
+    border-color: #fff;
+}
+.true {
+    position: relative;
+    width: 1.2em;
+    height: .3em;
+    background-color: #058dd1;
+    transform: rotate(60deg);
+    transform-origin: right center;
+    border-radius: .15em;
+}
+.true:after {
+    content: "";
+    position: absolute;
+    top: .1em;
+    left: -.85em;
+    width: 2em;
+    height: .3em;
+    background-color: #058dd1;
+    transform: rotate(60deg);
+    transform-origin: right center;
+    border-radius: .15em;
 }
