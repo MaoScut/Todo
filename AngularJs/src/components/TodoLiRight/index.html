@@ -3,5 +3,7 @@
     <span class="undone" ng-class="{done: todo.done}" ng-click="check(todo.id)"></span>
     <!-- <input type="checkbox" ng-click="toggleCheck(todo.id)" ng-checked="todo.done"> -->
     {{todo.detail}}
+    <!-- <div class="menu2"></div> -->
+    <i class="iconfont icon-delete delete-btn" ng-click="delete(todo.id)"></i>
     <!-- <button ng-click="delete(todo.id)">删除</button> -->
 </li>

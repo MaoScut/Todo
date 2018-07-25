@@ -23,6 +23,11 @@ div.container {
             }
         }
         .todo-ul-right {
+            .delete-btn {
+                float: right;
+                margin-right: 10px;
+                color: red;
+            }
             .detail-input {
                 margin-left: 20px;
             }
@@ -59,35 +64,20 @@ div.container {
         position: fixed;
         height: 20px;
         width: 100%;
-        bottom: 30px;
+        bottom: 55px;
         .add-btn {
             position: absolute;
             right: 10%;
+            font-size: 60px;
+            color: #fad400;
+            background-color: #fff;
         }
         .showEditor-btn {
             position: absolute;
             right: 10%;
-        }
-    }
-    .add {
-        position: absolute;
-        right: 30%;
-        top: 20%;
-        width: 20%;
-        height: 50%;
-        .add-input {
-            border: 10px solid #dd3b2a;
-            border-radius: 10px;
-            box-sizing: border-box;
-            width: 100%;
-            height: 40%
-        }
-        .add-btn {
-            border-radius: 10px;
-            background-color: #2de0ad;
-            border-width: 0;
-            height: 40px;
-            font-size: 22px;
+            font-size: 60px;
+            color: #fad400;
+            background-color: #fff;
         }
     }
     /*隐藏掉我们模型的checkbox*/
@@ -190,4 +180,35 @@ div.container {
     transform: rotate(60deg);
     transform-origin: right center;
     border-radius: .15em;
+}
+.menu2 {
+    box-sizing: border-box;
+    position: relative;
+    width: .5em;
+    height: .5em;
+    background-color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.menu2:before {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -.75em;
+    width: .5em;
+    height: .5em;
+    background-color: #000;
+    border-radius: 50%;
+}
+.menu2:after {
+    box-sizing: border-box;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: .75em;
+    width: .5em;
+    height: .5em;
+    background-color: #000;
+    border-radius: 50%;
 }

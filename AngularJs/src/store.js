@@ -11,6 +11,9 @@ export default class Store {
         return JSON.parse(localStorage.getItem(this.key));
     }
     save() {
+        this.list.sort(function(obj1, obj2) {
+            return obj1.achieveTime-obj2.achieveTime;
+        });
         localStorage.setItem(this.key, JSON.stringify(this.list));
     }
     add(detail, achieveTime) {
