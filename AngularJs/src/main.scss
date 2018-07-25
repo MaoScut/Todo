@@ -1,0 +1,80 @@
+div.container {
+    width: 1920px;
+    height: 900px;
+    background-color: #edf6ff;
+    border: 10px solid #2babe2;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    .list {        
+        width: 20%;
+        height: 50%;
+        position: absolute;
+        top: 20%;
+        left: 25%;
+        .todo-ul {
+            margin: 0;
+            border: 10px solid #dd3b2a;
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            height: 80%;
+            padding-left: 10px;    
+            li {
+                list-style: none;
+                font-size: 22px;
+            }
+        }
+        .toggle-hide-done-btn {
+            border-radius: 10px;
+            background-color: #2de0ad;
+            border-width: 0;
+            height: 40px;
+            font-size: 22px;
+        }
+    }
+    .add {
+        position: absolute;
+        right: 30%;
+        top: 20%;
+        width: 20%;
+        height: 50%;
+        .add-input {
+            border: 10px solid #dd3b2a;
+            border-radius: 10px;
+            box-sizing: border-box;
+            width: 100%;
+            height: 40%
+        }
+        .add-btn {
+            border-radius: 10px;
+            background-color: #2de0ad;
+            border-width: 0;
+            height: 40px;
+            font-size: 22px;
+        }
+    }
+    /*隐藏掉我们模型的checkbox*/
+    .my_protocol .input_agreement_protocol {
+                appearance: none;
+                -webkit-appearance: none;
+                outline: none;
+                display: none;
+            }
+    /*未选中时*/        
+   .my_protocol .input_agreement_protocol+span {
+                width: 16px;
+                height: 16px;
+                background-color: red;
+                display: inline-block;
+                background: url("../dist/icon_checkbox.png") no-repeat;
+                background-position-x: 0px;
+                background-position-y: -25px;
+                position: relative;
+                top: 3px;
+            }
+   /*选中checkbox时,修改背景图片的位置*/            
+   .my_protocol .input_agreement_protocol:checked+span {
+                background-position: 0 0px
+            }
+}

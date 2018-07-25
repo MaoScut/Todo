@@ -45,6 +45,9 @@ module.exports = {
       }, {
         test: /\.html$/,
         loaders: ['ngtemplate-loader', 'html-loader']
+      }, {
+        test: /\.png$/,
+        loader: 'url-loader',
       }
     ],
   },
