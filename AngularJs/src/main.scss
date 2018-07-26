@@ -2,16 +2,18 @@ body {
     margin: 0;
 }
 div.container {
+    // max-width: 800px;
     header {
         height: 100px;
         background-color: #058dd1;
         border-bottom: 2px solid #7c6708;
     }
-    main {      
+    main {
         li {
             list-style: none;
             font-size: 22px;
             margin: 30px 0;
+            height: 30px;
         }  
         .todo-ul-left {
             padding: 0;
@@ -212,3 +214,4 @@ div.container {
     background-color: #000;
     border-radius: 50%;
 }
+

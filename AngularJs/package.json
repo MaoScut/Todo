@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.7.2",
+    "angular-animate": "^1.7.2",
     "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {

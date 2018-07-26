@@ -5,19 +5,30 @@
             <li ng-show="bShowEditor">
                 <input class="achieveTime-input" type="text" ng-model="achieveTime">
             </li>
-            <todo-li-left ng-repeat="todo in list | filter: beShowed track by $index"></todo-li>
-            </ul>
+            <li ng-repeat="todo in list | filter: beShowed track by $index">
+                <span>{{todo.achieveTime | date: 'HH:mm'}}</span>
+            </li>
+        </ul>
         <ul class="todo-ul-right pm-right">
             <li ng-show="bShowEditor">
                 <input class="detail-input" type="text" ng-model="tempDetail">
             </li>
-            <todo-li-right ng-repeat="todo in list | filter: beShowed track by $index"></todo-li>
+            <li ng-repeat="todo in list | filter: beShowed track by $index">
+                <span class="undone" ng-class="{done: todo.done}" ng-click="check(todo.id)"></span>
+                {{todo.detail}}
+                <i class="iconfont icon-delete delete-btn" ng-click="delete(todo.id)"></i>
+            </li>
         </ul>
     </main>
     <footer>
         <i class="iconfont icon-circle-add showEditor-btn" ng-hide="bShowEditor" ng-click="showEditor()"></i>
         <i class="add-btn iconfont icon-check-circle-copy" ng-show="bShowEditor" ng-click="add()"></i>
     </footer>
+    <!-- <div ng-if="bool" class="fade">
+        Fade me in out
+     </div>
+     <button ng-click="bool=true">Fade In!</button>
+     <button ng-click="bool=false">Fade Out!</button> -->
     <!-- <div class="add">
         内容：
         <br>
